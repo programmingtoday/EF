@@ -1,0 +1,2569 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PCIModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Action_Tree_Data">
+          <Key>
+            <PropertyRef Name="Action_Tree_DataId" />
+          </Key>
+          <Property Name="Action_Tree_DataId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Level1_CategoryId" Type="int" Nullable="false" />
+          <Property Name="Level2_CategoryId" Type="int" />
+          <Property Name="Level3_CategoryId" Type="int" />
+          <Property Name="Level4_CategoryId" Type="int" />
+          <Property Name="Parent_Action_Tree_DataId" Type="int" />
+        </EntityType>
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="ApplicationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ApplicationName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Assignee">
+          <Key>
+            <PropertyRef Name="AssigneeId" />
+          </Key>
+          <Property Name="AssigneeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AssigneeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ParentCategoryId" Type="int" />
+          <Property Name="ApplicationId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyAbv" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ContactId" />
+          </Key>
+          <Property Name="ContactId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="101" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EscalationGroup">
+          <Key>
+            <PropertyRef Name="EscalationGroupId" />
+          </Key>
+          <Property Name="EscalationGroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EscalationGroupName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="int" Nullable="false" />
+          <Property Name="EventTypeID" Type="int" Nullable="false" />
+          <Property Name="TeamID" Type="int" Nullable="false" />
+          <Property Name="LocationID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="StartTime" Type="datetime" Nullable="false" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="LastModificationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="EventType">
+          <Key>
+            <PropertyRef Name="EventTypeID" />
+          </Key>
+          <Property Name="EventTypeID" Type="int" Nullable="false" />
+          <Property Name="EventType" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="LocationId" />
+          </Key>
+          <Property Name="LocationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LocationName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LocationAbv" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Priority">
+          <Key>
+            <PropertyRef Name="PriorityId" />
+          </Key>
+          <Property Name="PriorityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PriorityName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DisplayOrder" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductionLine">
+          <Key>
+            <PropertyRef Name="ProductionLineId" />
+          </Key>
+          <Property Name="ProductionLineId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductionLineName" Type="varchar" MaxLength="50" />
+          <Property Name="PL_Desc" Type="varchar" MaxLength="50" />
+          <Property Name="LocationId" Type="int" />
+        </EntityType>
+        <EntityType Name="ProductionUnit">
+          <Key>
+            <PropertyRef Name="ProductionUnitId" />
+          </Key>
+          <Property Name="ProductionUnitId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductionUnitName" Type="varchar" MaxLength="50" />
+          <Property Name="PU_Desc" Type="varchar" MaxLength="50" />
+          <Property Name="ProductionLineId" Type="int" />
+        </EntityType>
+        <EntityType Name="ReportedIssue_Tree_Data">
+          <Key>
+            <PropertyRef Name="ReportedIssue_Tree_DataId" />
+          </Key>
+          <Property Name="ReportedIssue_Tree_DataId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Level1_CategoryId" Type="int" Nullable="false" />
+          <Property Name="Level2_CategoryId" Type="int" />
+          <Property Name="Level3_CategoryId" Type="int" />
+          <Property Name="Level4_CategoryId" Type="int" />
+          <Property Name="Parent_ReportedIssue_Tree_DataId" Type="int" />
+        </EntityType>
+        <EntityType Name="RootCause_Tree_Data">
+          <Key>
+            <PropertyRef Name="RootCause_Tree_DataId" />
+          </Key>
+          <Property Name="RootCause_Tree_DataId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Level1_CategoryId" Type="int" Nullable="false" />
+          <Property Name="Level2_CategoryId" Type="int" />
+          <Property Name="Level3_CategoryId" Type="int" />
+          <Property Name="Level4_CategoryId" Type="int" />
+          <Property Name="Parent_RootCause_Tree_DataId" Type="int" />
+        </EntityType>
+        <EntityType Name="Source">
+          <Key>
+            <PropertyRef Name="SourceId" />
+          </Key>
+          <Property Name="SourceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SourceName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyId" Type="int" Nullable="false" />
+          <Property Name="DisplayOrder" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="TeamID" />
+          </Key>
+          <Property Name="TeamID" Type="int" Nullable="false" />
+          <Property Name="TeamName" Type="nvarchar(max)" />
+          <Property Name="CompanyID" Type="int" />
+        </EntityType>
+        <EntityType Name="test">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="First_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Last_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Age" Type="int" />
+          <Property Name="Height" Type="int" />
+          <Property Name="weigh" Type="int" />
+        </EntityType>
+        <EntityType Name="Ticket">
+          <Key>
+            <PropertyRef Name="TicketId" />
+          </Key>
+          <Property Name="TicketId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExternalReferenceNo" Type="nvarchar" MaxLength="100" />
+          <Property Name="CompanyId" Type="int" Nullable="false" />
+          <Property Name="ContactId" Type="int" Nullable="false" />
+          <Property Name="LocationId" Type="int" Nullable="false" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+          <Property Name="PriorityId" Type="int" Nullable="false" />
+          <Property Name="AssigneeId" Type="int" Nullable="false" />
+          <Property Name="ApplicationId" Type="int" Nullable="false" />
+          <Property Name="IsMajorIncident" Type="bit" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RootCause" Type="nvarchar(max)" />
+          <Property Name="Resolution" Type="nvarchar(max)" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="EscalationGroupId" Type="int" />
+          <Property Name="SourceId" Type="int" Nullable="false" />
+          <Property Name="ReportedDate" Type="datetime" Nullable="false" />
+          <Property Name="ResolvedDate" Type="datetime" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="LastModificationDate" Type="datetime" Nullable="false" />
+          <Property Name="RootCause_Tree_DataId" Type="int" />
+          <Property Name="ReportedIssue_Tree_DataId" Type="int" />
+          <Property Name="Action1_Tree_DataId" Type="int" />
+          <Property Name="Action2_Tree_DataId" Type="int" />
+          <Property Name="Action3_Tree_DataId" Type="int" />
+          <Property Name="ProductionUnitId" Type="int" />
+        </EntityType>
+        <EntityType Name="UnitDowntime">
+          <Key>
+            <PropertyRef Name="UnitDowntimeID" />
+          </Key>
+          <Property Name="UnitDowntimeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductionUnitId" Type="int" Nullable="false" />
+          <Property Name="TEDed_Id" Type="int" Nullable="false" />
+          <Property Name="Start_Time" Type="datetime" />
+          <Property Name="End_Time" Type="datetime" />
+          <Property Name="FaultName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PCI.pci.PCIResponseTickets' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PCIResponseTickets">
+          <Key>
+            <PropertyRef Name="SourceName" />
+          </Key>
+          <Property Name="TicketId" Type="int" />
+          <Property Name="ExternalReferenceNo" Type="nvarchar" MaxLength="100" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="101" />
+          <Property Name="LocationName" Type="nvarchar" MaxLength="50" />
+          <Property Name="StatusName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PriorityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="AssigneeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ApplicationName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsMajorIncident" Type="bit" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="RootCause" Type="nvarchar(max)" />
+          <Property Name="Resolution" Type="nvarchar(max)" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="EscalationGroupName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SourceName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ReportedDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="ResolvedDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="CreationDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="LastModificationDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="RootCause Lv1 Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="RootCause Lv2 Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="RootCause Lv3 Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReportedIssue Lv1 Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReportedIssue Lv2 Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReportedIssue Lv3 Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="Action1  Lv1 Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="Action1  Lv2 Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="Action1  Lv3 Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="Action2  Lv1 Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="Action2  Lv2 Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="Action2  Lv3 Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="Action3  Lv1 Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="Action3  Lv2 Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="Action3  Lv3 Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="Production Unit Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PCI.pci.PCIResponseTicketsReport' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PCIResponseTicketsReport">
+          <Key>
+            <PropertyRef Name="TicketId" />
+            <PropertyRef Name="CompanyName" />
+            <PropertyRef Name="CompanyId" />
+            <PropertyRef Name="IsMajorIncident" />
+            <PropertyRef Name="Description" />
+            <PropertyRef Name="ReportedDate" />
+            <PropertyRef Name="CreationDate" />
+            <PropertyRef Name="LastModificationDate" />
+          </Key>
+          <Property Name="TicketId" Type="int" Nullable="false" />
+          <Property Name="ExternalReferenceNo" Type="nvarchar" MaxLength="100" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyId" Type="int" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="101" />
+          <Property Name="LocationName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LocationId" Type="int" />
+          <Property Name="StatusName" Type="nvarchar" MaxLength="50" />
+          <Property Name="StatusId" Type="int" />
+          <Property Name="PriorityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="AssigneeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ApplicationName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsMajorIncident" Type="bit" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RootCause" Type="nvarchar(max)" />
+          <Property Name="Resolution" Type="nvarchar(max)" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="EscalationGroupId" Type="int" />
+          <Property Name="EscalationGroupName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SourceName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReportedDate" Type="datetime" Nullable="false" />
+          <Property Name="ResolvedDate" Type="datetime" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="LastModificationDate" Type="datetime" Nullable="false" />
+          <Property Name="RootCause_Lv1_Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="RootCauseID_Lv1_Category" Type="int" />
+          <Property Name="RootCause_Lv2_Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="RootCauseID_Lv2_Category" Type="int" />
+          <Property Name="RootCause_Lv3_Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="RootCauseID_Lv3_Category" Type="int" />
+          <Property Name="ReportedIssue_Lv1_Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReportedIssue_Lv2_Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReportedIssue_Lv3_Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="Action1_Lv1_Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="Action1_Lv2_Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="Action1_Lv3_Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="Action2_Lv1_Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="Action2_Lv2_Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="Action2_Lv3_Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="Action3_Lv1_Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="Action3_Lv2_Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="Action3_Lv3_Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProductionUnitName" Type="varchar" MaxLength="50" />
+          <Property Name="PU_Desc" Type="varchar" MaxLength="50" />
+          <Property Name="ProductionUnitId" Type="int" />
+        </EntityType>
+        <Association Name="FK_Action_Tree_Data_Category1">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Action_Tree_Data" Type="Self.Action_Tree_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Action_Tree_Data">
+              <PropertyRef Name="Level1_CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Action_Tree_Data_Category2">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Action_Tree_Data" Type="Self.Action_Tree_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Action_Tree_Data">
+              <PropertyRef Name="Level2_CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Action_Tree_Data_Category3">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Action_Tree_Data" Type="Self.Action_Tree_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Action_Tree_Data">
+              <PropertyRef Name="Level3_CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Action_Tree_Data_Category4">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Action_Tree_Data" Type="Self.Action_Tree_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Action_Tree_Data">
+              <PropertyRef Name="Level4_CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="Application" Type="Self.Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="Application">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Category_Application">
+          <End Role="Application" Type="Self.Application" Multiplicity="1" />
+          <End Role="Category" Type="Self.Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="Category">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Category_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Category1" Type="Self.Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Category1">
+              <PropertyRef Name="ParentCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyID">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="Team" Type="Self.Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="Team">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contact_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EscalationGroup_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="EscalationGroup" Type="Self.EscalationGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="EscalationGroup">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="LocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event_Team">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="TeamID" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="TeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event_Type">
+          <End Role="EventType" Type="Self.EventType" Multiplicity="1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventType">
+              <PropertyRef Name="EventTypeID" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="EventTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Location_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="Location" Type="Self.Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductionLineId">
+          <End Role="ProductionLine" Type="Self.ProductionLine" Multiplicity="0..1" />
+          <End Role="ProductionUnit" Type="Self.ProductionUnit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductionLine">
+              <PropertyRef Name="ProductionLineId" />
+            </Principal>
+            <Dependent Role="ProductionUnit">
+              <PropertyRef Name="ProductionLineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductionUnit_Id">
+          <End Role="ProductionUnit" Type="Self.ProductionUnit" Multiplicity="1" />
+          <End Role="UnitDowntime" Type="Self.UnitDowntime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductionUnit">
+              <PropertyRef Name="ProductionUnitId" />
+            </Principal>
+            <Dependent Role="UnitDowntime">
+              <PropertyRef Name="ProductionUnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductionUnitId">
+          <End Role="ProductionUnit" Type="Self.ProductionUnit" Multiplicity="1" />
+          <End Role="UnitDowntime" Type="Self.UnitDowntime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductionUnit">
+              <PropertyRef Name="ProductionUnitId" />
+            </Principal>
+            <Dependent Role="UnitDowntime">
+              <PropertyRef Name="ProductionUnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportedIssue_Tree_Data">
+          <End Role="ReportedIssue_Tree_Data" Type="Self.ReportedIssue_Tree_Data" Multiplicity="0..1" />
+          <End Role="ReportedIssue_Tree_Data1" Type="Self.ReportedIssue_Tree_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReportedIssue_Tree_Data">
+              <PropertyRef Name="ReportedIssue_Tree_DataId" />
+            </Principal>
+            <Dependent Role="ReportedIssue_Tree_Data1">
+              <PropertyRef Name="Parent_ReportedIssue_Tree_DataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportedIssue_Tree_Data_Category1">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="ReportedIssue_Tree_Data" Type="Self.ReportedIssue_Tree_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="ReportedIssue_Tree_Data">
+              <PropertyRef Name="Level1_CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportedIssue_Tree_Data_Category2">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="ReportedIssue_Tree_Data" Type="Self.ReportedIssue_Tree_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="ReportedIssue_Tree_Data">
+              <PropertyRef Name="Level2_CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportedIssue_Tree_Data_Category3">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="ReportedIssue_Tree_Data" Type="Self.ReportedIssue_Tree_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="ReportedIssue_Tree_Data">
+              <PropertyRef Name="Level3_CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportedIssue_Tree_Data_Category4">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="ReportedIssue_Tree_Data" Type="Self.ReportedIssue_Tree_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="ReportedIssue_Tree_Data">
+              <PropertyRef Name="Level4_CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RootCause_Tree_Data_Category1">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="RootCause_Tree_Data" Type="Self.RootCause_Tree_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="RootCause_Tree_Data">
+              <PropertyRef Name="Level1_CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RootCause_Tree_Data_Category2">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="RootCause_Tree_Data" Type="Self.RootCause_Tree_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="RootCause_Tree_Data">
+              <PropertyRef Name="Level2_CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RootCause_Tree_Data_Category3">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="RootCause_Tree_Data" Type="Self.RootCause_Tree_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="RootCause_Tree_Data">
+              <PropertyRef Name="Level3_CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RootCause_Tree_Data_Category4">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="RootCause_Tree_Data" Type="Self.RootCause_Tree_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="RootCause_Tree_Data">
+              <PropertyRef Name="Level4_CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Status_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="Status" Type="Self.Status" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="Status">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_Action1_Tree_Data">
+          <End Role="Action_Tree_Data" Type="Self.Action_Tree_Data" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Action_Tree_Data">
+              <PropertyRef Name="Action_Tree_DataId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="Action1_Tree_DataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_Action2_Tree_Data">
+          <End Role="Action_Tree_Data" Type="Self.Action_Tree_Data" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Action_Tree_Data">
+              <PropertyRef Name="Action_Tree_DataId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="Action2_Tree_DataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_Action3_Tree_Data">
+          <End Role="Action_Tree_Data" Type="Self.Action_Tree_Data" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Action_Tree_Data">
+              <PropertyRef Name="Action_Tree_DataId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="Action3_Tree_DataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_Application">
+          <End Role="Application" Type="Self.Application" Multiplicity="1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_Assignee">
+          <End Role="Assignee" Type="Self.Assignee" Multiplicity="1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assignee">
+              <PropertyRef Name="AssigneeId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="AssigneeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_Contact">
+          <End Role="Contact" Type="Self.Contact" Multiplicity="1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contact">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_EscalationGroup">
+          <End Role="EscalationGroup" Type="Self.EscalationGroup" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EscalationGroup">
+              <PropertyRef Name="EscalationGroupId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="EscalationGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_Priority">
+          <End Role="Priority" Type="Self.Priority" Multiplicity="1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Priority">
+              <PropertyRef Name="PriorityId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="PriorityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_ProductionUnit">
+          <End Role="ProductionUnit" Type="Self.ProductionUnit" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductionUnit">
+              <PropertyRef Name="ProductionUnitId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="ProductionUnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_ReportedIssue_Tree_Data">
+          <End Role="ReportedIssue_Tree_Data" Type="Self.ReportedIssue_Tree_Data" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReportedIssue_Tree_Data">
+              <PropertyRef Name="ReportedIssue_Tree_DataId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="ReportedIssue_Tree_DataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_RootCause_Tree_Data">
+          <End Role="RootCause_Tree_Data" Type="Self.RootCause_Tree_Data" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RootCause_Tree_Data">
+              <PropertyRef Name="RootCause_Tree_DataId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="RootCause_Tree_DataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_Source">
+          <End Role="Source" Type="Self.Source" Multiplicity="1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Source">
+              <PropertyRef Name="SourceId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="SourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PCIModelStoreContainer">
+          <EntitySet Name="Action_Tree_Data" EntityType="Self.Action_Tree_Data" Schema="pci" store:Type="Tables" />
+          <EntitySet Name="Application" EntityType="Self.Application" Schema="pci" store:Type="Tables" />
+          <EntitySet Name="Assignee" EntityType="Self.Assignee" Schema="pci" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="pci" store:Type="Tables" />
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="pci" store:Type="Tables" />
+          <EntitySet Name="Contact" EntityType="Self.Contact" Schema="pci" store:Type="Tables" />
+          <EntitySet Name="EscalationGroup" EntityType="Self.EscalationGroup" Schema="pci" store:Type="Tables" />
+          <EntitySet Name="Event" EntityType="Self.Event" Schema="pci" store:Type="Tables" />
+          <EntitySet Name="EventType" EntityType="Self.EventType" Schema="pci" store:Type="Tables" />
+          <EntitySet Name="Location" EntityType="Self.Location" Schema="pci" store:Type="Tables" />
+          <EntitySet Name="Priority" EntityType="Self.Priority" Schema="pci" store:Type="Tables" />
+          <EntitySet Name="ProductionLine" EntityType="Self.ProductionLine" Schema="pci" store:Type="Tables" />
+          <EntitySet Name="ProductionUnit" EntityType="Self.ProductionUnit" Schema="pci" store:Type="Tables" />
+          <EntitySet Name="ReportedIssue_Tree_Data" EntityType="Self.ReportedIssue_Tree_Data" Schema="pci" store:Type="Tables" />
+          <EntitySet Name="RootCause_Tree_Data" EntityType="Self.RootCause_Tree_Data" Schema="pci" store:Type="Tables" />
+          <EntitySet Name="Source" EntityType="Self.Source" Schema="pci" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="pci" store:Type="Tables" />
+          <EntitySet Name="Team" EntityType="Self.Team" Schema="pci" store:Type="Tables" />
+          <EntitySet Name="test" EntityType="Self.test" Schema="pci" store:Type="Tables" />
+          <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="pci" store:Type="Tables" />
+          <EntitySet Name="UnitDowntime" EntityType="Self.UnitDowntime" Schema="pci" store:Type="Tables" />
+          <EntitySet Name="PCIResponseTickets" EntityType="Self.PCIResponseTickets" store:Type="Views" store:Schema="pci">
+            <DefiningQuery>SELECT 
+    [PCIResponseTickets].[TicketId] AS [TicketId], 
+    [PCIResponseTickets].[ExternalReferenceNo] AS [ExternalReferenceNo], 
+    [PCIResponseTickets].[CompanyName] AS [CompanyName], 
+    [PCIResponseTickets].[FullName] AS [FullName], 
+    [PCIResponseTickets].[LocationName] AS [LocationName], 
+    [PCIResponseTickets].[StatusName] AS [StatusName], 
+    [PCIResponseTickets].[PriorityName] AS [PriorityName], 
+    [PCIResponseTickets].[AssigneeName] AS [AssigneeName], 
+    [PCIResponseTickets].[ApplicationName] AS [ApplicationName], 
+    [PCIResponseTickets].[IsMajorIncident] AS [IsMajorIncident], 
+    [PCIResponseTickets].[Description] AS [Description], 
+    [PCIResponseTickets].[RootCause] AS [RootCause], 
+    [PCIResponseTickets].[Resolution] AS [Resolution], 
+    [PCIResponseTickets].[Notes] AS [Notes], 
+    [PCIResponseTickets].[EscalationGroupName] AS [EscalationGroupName], 
+    [PCIResponseTickets].[SourceName] AS [SourceName], 
+    [PCIResponseTickets].[ReportedDate] AS [ReportedDate], 
+    [PCIResponseTickets].[ResolvedDate] AS [ResolvedDate], 
+    [PCIResponseTickets].[CreationDate] AS [CreationDate], 
+    [PCIResponseTickets].[LastModificationDate] AS [LastModificationDate], 
+    [PCIResponseTickets].[RootCause Lv1 Category] AS [RootCause Lv1 Category], 
+    [PCIResponseTickets].[RootCause Lv2 Category] AS [RootCause Lv2 Category], 
+    [PCIResponseTickets].[RootCause Lv3 Category] AS [RootCause Lv3 Category], 
+    [PCIResponseTickets].[ReportedIssue Lv1 Category] AS [ReportedIssue Lv1 Category], 
+    [PCIResponseTickets].[ReportedIssue Lv2 Category] AS [ReportedIssue Lv2 Category], 
+    [PCIResponseTickets].[ReportedIssue Lv3 Category] AS [ReportedIssue Lv3 Category], 
+    [PCIResponseTickets].[Action1  Lv1 Category] AS [Action1  Lv1 Category], 
+    [PCIResponseTickets].[Action1  Lv2 Category] AS [Action1  Lv2 Category], 
+    [PCIResponseTickets].[Action1  Lv3 Category] AS [Action1  Lv3 Category], 
+    [PCIResponseTickets].[Action2  Lv1 Category] AS [Action2  Lv1 Category], 
+    [PCIResponseTickets].[Action2  Lv2 Category] AS [Action2  Lv2 Category], 
+    [PCIResponseTickets].[Action2  Lv3 Category] AS [Action2  Lv3 Category], 
+    [PCIResponseTickets].[Action3  Lv1 Category] AS [Action3  Lv1 Category], 
+    [PCIResponseTickets].[Action3  Lv2 Category] AS [Action3  Lv2 Category], 
+    [PCIResponseTickets].[Action3  Lv3 Category] AS [Action3  Lv3 Category], 
+    [PCIResponseTickets].[Production Unit Name] AS [Production Unit Name]
+    FROM [pci].[PCIResponseTickets] AS [PCIResponseTickets]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PCIResponseTicketsReport" EntityType="Self.PCIResponseTicketsReport" store:Type="Views" store:Schema="pci">
+            <DefiningQuery>SELECT 
+    [PCIResponseTicketsReport].[TicketId] AS [TicketId], 
+    [PCIResponseTicketsReport].[ExternalReferenceNo] AS [ExternalReferenceNo], 
+    [PCIResponseTicketsReport].[CompanyName] AS [CompanyName], 
+    [PCIResponseTicketsReport].[CompanyId] AS [CompanyId], 
+    [PCIResponseTicketsReport].[FullName] AS [FullName], 
+    [PCIResponseTicketsReport].[LocationName] AS [LocationName], 
+    [PCIResponseTicketsReport].[LocationId] AS [LocationId], 
+    [PCIResponseTicketsReport].[StatusName] AS [StatusName], 
+    [PCIResponseTicketsReport].[StatusId] AS [StatusId], 
+    [PCIResponseTicketsReport].[PriorityName] AS [PriorityName], 
+    [PCIResponseTicketsReport].[AssigneeName] AS [AssigneeName], 
+    [PCIResponseTicketsReport].[ApplicationName] AS [ApplicationName], 
+    [PCIResponseTicketsReport].[IsMajorIncident] AS [IsMajorIncident], 
+    [PCIResponseTicketsReport].[Description] AS [Description], 
+    [PCIResponseTicketsReport].[RootCause] AS [RootCause], 
+    [PCIResponseTicketsReport].[Resolution] AS [Resolution], 
+    [PCIResponseTicketsReport].[Notes] AS [Notes], 
+    [PCIResponseTicketsReport].[EscalationGroupId] AS [EscalationGroupId], 
+    [PCIResponseTicketsReport].[EscalationGroupName] AS [EscalationGroupName], 
+    [PCIResponseTicketsReport].[SourceName] AS [SourceName], 
+    [PCIResponseTicketsReport].[ReportedDate] AS [ReportedDate], 
+    [PCIResponseTicketsReport].[ResolvedDate] AS [ResolvedDate], 
+    [PCIResponseTicketsReport].[CreationDate] AS [CreationDate], 
+    [PCIResponseTicketsReport].[LastModificationDate] AS [LastModificationDate], 
+    [PCIResponseTicketsReport].[RootCause_Lv1_Category] AS [RootCause_Lv1_Category], 
+    [PCIResponseTicketsReport].[RootCauseID_Lv1_Category] AS [RootCauseID_Lv1_Category], 
+    [PCIResponseTicketsReport].[RootCause_Lv2_Category] AS [RootCause_Lv2_Category], 
+    [PCIResponseTicketsReport].[RootCauseID_Lv2_Category] AS [RootCauseID_Lv2_Category], 
+    [PCIResponseTicketsReport].[RootCause_Lv3_Category] AS [RootCause_Lv3_Category], 
+    [PCIResponseTicketsReport].[RootCauseID_Lv3_Category] AS [RootCauseID_Lv3_Category], 
+    [PCIResponseTicketsReport].[ReportedIssue_Lv1_Category] AS [ReportedIssue_Lv1_Category], 
+    [PCIResponseTicketsReport].[ReportedIssue_Lv2_Category] AS [ReportedIssue_Lv2_Category], 
+    [PCIResponseTicketsReport].[ReportedIssue_Lv3_Category] AS [ReportedIssue_Lv3_Category], 
+    [PCIResponseTicketsReport].[Action1_Lv1_Category] AS [Action1_Lv1_Category], 
+    [PCIResponseTicketsReport].[Action1_Lv2_Category] AS [Action1_Lv2_Category], 
+    [PCIResponseTicketsReport].[Action1_Lv3_Category] AS [Action1_Lv3_Category], 
+    [PCIResponseTicketsReport].[Action2_Lv1_Category] AS [Action2_Lv1_Category], 
+    [PCIResponseTicketsReport].[Action2_Lv2_Category] AS [Action2_Lv2_Category], 
+    [PCIResponseTicketsReport].[Action2_Lv3_Category] AS [Action2_Lv3_Category], 
+    [PCIResponseTicketsReport].[Action3_Lv1_Category] AS [Action3_Lv1_Category], 
+    [PCIResponseTicketsReport].[Action3_Lv2_Category] AS [Action3_Lv2_Category], 
+    [PCIResponseTicketsReport].[Action3_Lv3_Category] AS [Action3_Lv3_Category], 
+    [PCIResponseTicketsReport].[ProductionUnitName] AS [ProductionUnitName], 
+    [PCIResponseTicketsReport].[PU_Desc] AS [PU_Desc], 
+    [PCIResponseTicketsReport].[ProductionUnitId] AS [ProductionUnitId]
+    FROM [pci].[PCIResponseTicketsReport] AS [PCIResponseTicketsReport]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Action_Tree_Data_Category1" Association="Self.FK_Action_Tree_Data_Category1">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Action_Tree_Data" EntitySet="Action_Tree_Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Action_Tree_Data_Category2" Association="Self.FK_Action_Tree_Data_Category2">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Action_Tree_Data" EntitySet="Action_Tree_Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Action_Tree_Data_Category3" Association="Self.FK_Action_Tree_Data_Category3">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Action_Tree_Data" EntitySet="Action_Tree_Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Action_Tree_Data_Category4" Association="Self.FK_Action_Tree_Data_Category4">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Action_Tree_Data" EntitySet="Action_Tree_Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_Company" Association="Self.FK_Application_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Application" EntitySet="Application" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Category_Application" Association="Self.FK_Category_Application">
+            <End Role="Application" EntitySet="Application" />
+            <End Role="Category" EntitySet="Category" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Category_Category" Association="Self.FK_Category_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Category1" EntitySet="Category" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyID" Association="Self.FK_CompanyID">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Team" EntitySet="Team" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contact_Company" Association="Self.FK_Contact_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Contact" EntitySet="Contact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EscalationGroup_Company" Association="Self.FK_EscalationGroup_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="EscalationGroup" EntitySet="EscalationGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event_Location" Association="Self.FK_Event_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event_Team" Association="Self.FK_Event_Team">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event_Type" Association="Self.FK_Event_Type">
+            <End Role="EventType" EntitySet="EventType" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Location_Company" Association="Self.FK_Location_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Location" EntitySet="Location" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductionLineId" Association="Self.FK_ProductionLineId">
+            <End Role="ProductionLine" EntitySet="ProductionLine" />
+            <End Role="ProductionUnit" EntitySet="ProductionUnit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductionUnit_Id" Association="Self.FK_ProductionUnit_Id">
+            <End Role="ProductionUnit" EntitySet="ProductionUnit" />
+            <End Role="UnitDowntime" EntitySet="UnitDowntime" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductionUnitId" Association="Self.FK_ProductionUnitId">
+            <End Role="ProductionUnit" EntitySet="ProductionUnit" />
+            <End Role="UnitDowntime" EntitySet="UnitDowntime" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportedIssue_Tree_Data" Association="Self.FK_ReportedIssue_Tree_Data">
+            <End Role="ReportedIssue_Tree_Data" EntitySet="ReportedIssue_Tree_Data" />
+            <End Role="ReportedIssue_Tree_Data1" EntitySet="ReportedIssue_Tree_Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportedIssue_Tree_Data_Category1" Association="Self.FK_ReportedIssue_Tree_Data_Category1">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="ReportedIssue_Tree_Data" EntitySet="ReportedIssue_Tree_Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportedIssue_Tree_Data_Category2" Association="Self.FK_ReportedIssue_Tree_Data_Category2">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="ReportedIssue_Tree_Data" EntitySet="ReportedIssue_Tree_Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportedIssue_Tree_Data_Category3" Association="Self.FK_ReportedIssue_Tree_Data_Category3">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="ReportedIssue_Tree_Data" EntitySet="ReportedIssue_Tree_Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportedIssue_Tree_Data_Category4" Association="Self.FK_ReportedIssue_Tree_Data_Category4">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="ReportedIssue_Tree_Data" EntitySet="ReportedIssue_Tree_Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RootCause_Tree_Data_Category1" Association="Self.FK_RootCause_Tree_Data_Category1">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="RootCause_Tree_Data" EntitySet="RootCause_Tree_Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RootCause_Tree_Data_Category2" Association="Self.FK_RootCause_Tree_Data_Category2">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="RootCause_Tree_Data" EntitySet="RootCause_Tree_Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RootCause_Tree_Data_Category3" Association="Self.FK_RootCause_Tree_Data_Category3">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="RootCause_Tree_Data" EntitySet="RootCause_Tree_Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RootCause_Tree_Data_Category4" Association="Self.FK_RootCause_Tree_Data_Category4">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="RootCause_Tree_Data" EntitySet="RootCause_Tree_Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Status_Company" Association="Self.FK_Status_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Status" EntitySet="Status" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_Action1_Tree_Data" Association="Self.FK_Ticket_Action1_Tree_Data">
+            <End Role="Action_Tree_Data" EntitySet="Action_Tree_Data" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_Action2_Tree_Data" Association="Self.FK_Ticket_Action2_Tree_Data">
+            <End Role="Action_Tree_Data" EntitySet="Action_Tree_Data" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_Action3_Tree_Data" Association="Self.FK_Ticket_Action3_Tree_Data">
+            <End Role="Action_Tree_Data" EntitySet="Action_Tree_Data" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_Application" Association="Self.FK_Ticket_Application">
+            <End Role="Application" EntitySet="Application" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_Assignee" Association="Self.FK_Ticket_Assignee">
+            <End Role="Assignee" EntitySet="Assignee" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_Company" Association="Self.FK_Ticket_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_Contact" Association="Self.FK_Ticket_Contact">
+            <End Role="Contact" EntitySet="Contact" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_EscalationGroup" Association="Self.FK_Ticket_EscalationGroup">
+            <End Role="EscalationGroup" EntitySet="EscalationGroup" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_Location" Association="Self.FK_Ticket_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_Priority" Association="Self.FK_Ticket_Priority">
+            <End Role="Priority" EntitySet="Priority" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_ProductionUnit" Association="Self.FK_Ticket_ProductionUnit">
+            <End Role="ProductionUnit" EntitySet="ProductionUnit" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_ReportedIssue_Tree_Data" Association="Self.FK_Ticket_ReportedIssue_Tree_Data">
+            <End Role="ReportedIssue_Tree_Data" EntitySet="ReportedIssue_Tree_Data" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_RootCause_Tree_Data" Association="Self.FK_Ticket_RootCause_Tree_Data">
+            <End Role="RootCause_Tree_Data" EntitySet="RootCause_Tree_Data" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_Source" Association="Self.FK_Ticket_Source">
+            <End Role="Source" EntitySet="Source" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_Status" Association="Self.FK_Ticket_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PCIModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Action_Tree_Data">
+          <Key>
+            <PropertyRef Name="Action_Tree_DataId" />
+          </Key>
+          <Property Name="Action_Tree_DataId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Level1_CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="Level2_CategoryId" Type="Int32" />
+          <Property Name="Level3_CategoryId" Type="Int32" />
+          <Property Name="Level4_CategoryId" Type="Int32" />
+          <Property Name="Parent_Action_Tree_DataId" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Action_Tree_Data_Category1" FromRole="Action_Tree_Data" ToRole="Category" />
+          <NavigationProperty Name="Category1" Relationship="Self.FK_Action_Tree_Data_Category2" FromRole="Action_Tree_Data" ToRole="Category" />
+          <NavigationProperty Name="Category2" Relationship="Self.FK_Action_Tree_Data_Category3" FromRole="Action_Tree_Data" ToRole="Category" />
+          <NavigationProperty Name="Category3" Relationship="Self.FK_Action_Tree_Data_Category4" FromRole="Action_Tree_Data" ToRole="Category" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK_Ticket_Action1_Tree_Data" FromRole="Action_Tree_Data" ToRole="Ticket" />
+          <NavigationProperty Name="Tickets1" Relationship="Self.FK_Ticket_Action2_Tree_Data" FromRole="Action_Tree_Data" ToRole="Ticket" />
+          <NavigationProperty Name="Tickets2" Relationship="Self.FK_Ticket_Action3_Tree_Data" FromRole="Action_Tree_Data" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="ApplicationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ApplicationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_Application_Company" FromRole="Application" ToRole="Company" />
+          <NavigationProperty Name="Categories" Relationship="Self.FK_Category_Application" FromRole="Application" ToRole="Category" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK_Ticket_Application" FromRole="Application" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="Assignee">
+          <Key>
+            <PropertyRef Name="AssigneeId" />
+          </Key>
+          <Property Name="AssigneeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AssigneeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK_Ticket_Assignee" FromRole="Assignee" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ParentCategoryId" Type="Int32" />
+          <Property Name="ApplicationId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Action_Tree_Data" Relationship="Self.FK_Action_Tree_Data_Category1" FromRole="Category" ToRole="Action_Tree_Data" />
+          <NavigationProperty Name="Action_Tree_Data1" Relationship="Self.FK_Action_Tree_Data_Category2" FromRole="Category" ToRole="Action_Tree_Data" />
+          <NavigationProperty Name="Action_Tree_Data2" Relationship="Self.FK_Action_Tree_Data_Category3" FromRole="Category" ToRole="Action_Tree_Data" />
+          <NavigationProperty Name="Action_Tree_Data3" Relationship="Self.FK_Action_Tree_Data_Category4" FromRole="Category" ToRole="Action_Tree_Data" />
+          <NavigationProperty Name="Application" Relationship="Self.FK_Category_Application" FromRole="Category" ToRole="Application" />
+          <NavigationProperty Name="Category1" Relationship="Self.FK_Category_Category" FromRole="Category" ToRole="Category1" />
+          <NavigationProperty Name="Category2" Relationship="Self.FK_Category_Category" FromRole="Category1" ToRole="Category" />
+          <NavigationProperty Name="ReportedIssue_Tree_Data" Relationship="Self.FK_ReportedIssue_Tree_Data_Category1" FromRole="Category" ToRole="ReportedIssue_Tree_Data" />
+          <NavigationProperty Name="ReportedIssue_Tree_Data1" Relationship="Self.FK_ReportedIssue_Tree_Data_Category2" FromRole="Category" ToRole="ReportedIssue_Tree_Data" />
+          <NavigationProperty Name="ReportedIssue_Tree_Data2" Relationship="Self.FK_ReportedIssue_Tree_Data_Category3" FromRole="Category" ToRole="ReportedIssue_Tree_Data" />
+          <NavigationProperty Name="ReportedIssue_Tree_Data3" Relationship="Self.FK_ReportedIssue_Tree_Data_Category4" FromRole="Category" ToRole="ReportedIssue_Tree_Data" />
+          <NavigationProperty Name="RootCause_Tree_Data" Relationship="Self.FK_RootCause_Tree_Data_Category1" FromRole="Category" ToRole="RootCause_Tree_Data" />
+          <NavigationProperty Name="RootCause_Tree_Data1" Relationship="Self.FK_RootCause_Tree_Data_Category2" FromRole="Category" ToRole="RootCause_Tree_Data" />
+          <NavigationProperty Name="RootCause_Tree_Data2" Relationship="Self.FK_RootCause_Tree_Data_Category3" FromRole="Category" ToRole="RootCause_Tree_Data" />
+          <NavigationProperty Name="RootCause_Tree_Data3" Relationship="Self.FK_RootCause_Tree_Data_Category4" FromRole="Category" ToRole="RootCause_Tree_Data" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CompanyAbv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Applications" Relationship="Self.FK_Application_Company" FromRole="Company" ToRole="Application" />
+          <NavigationProperty Name="Teams" Relationship="Self.FK_CompanyID" FromRole="Company" ToRole="Team" />
+          <NavigationProperty Name="Contacts" Relationship="Self.FK_Contact_Company" FromRole="Company" ToRole="Contact" />
+          <NavigationProperty Name="EscalationGroups" Relationship="Self.FK_EscalationGroup_Company" FromRole="Company" ToRole="EscalationGroup" />
+          <NavigationProperty Name="Locations" Relationship="Self.FK_Location_Company" FromRole="Company" ToRole="Location" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_Status_Company" FromRole="Company" ToRole="Status" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK_Ticket_Company" FromRole="Company" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ContactId" />
+          </Key>
+          <Property Name="ContactId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="101" FixedLength="false" Unicode="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_Contact_Company" FromRole="Contact" ToRole="Company" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK_Ticket_Contact" FromRole="Contact" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="EscalationGroup">
+          <Key>
+            <PropertyRef Name="EscalationGroupId" />
+          </Key>
+          <Property Name="EscalationGroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EscalationGroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_EscalationGroup_Company" FromRole="EscalationGroup" ToRole="Company" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK_Ticket_EscalationGroup" FromRole="EscalationGroup" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="Int32" Nullable="false" />
+          <Property Name="EventTypeID" Type="Int32" Nullable="false" />
+          <Property Name="TeamID" Type="Int32" Nullable="false" />
+          <Property Name="LocationID" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="LastModificationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_Event_Location" FromRole="Event" ToRole="Location" />
+          <NavigationProperty Name="Team" Relationship="Self.FK_Event_Team" FromRole="Event" ToRole="Team" />
+          <NavigationProperty Name="EventType" Relationship="Self.FK_Event_Type" FromRole="Event" ToRole="EventType" />
+        </EntityType>
+        <EntityType Name="EventType">
+          <Key>
+            <PropertyRef Name="EventTypeID" />
+          </Key>
+          <Property Name="EventTypeID" Type="Int32" Nullable="false" />
+          <Property Name="EventType1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Events" Relationship="Self.FK_Event_Type" FromRole="EventType" ToRole="Event" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="LocationId" />
+          </Key>
+          <Property Name="LocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LocationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LocationAbv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_Location_Company" FromRole="Location" ToRole="Company" />
+          <NavigationProperty Name="Events" Relationship="Self.FK_Event_Location" FromRole="Location" ToRole="Event" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK_Ticket_Location" FromRole="Location" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="Priority">
+          <Key>
+            <PropertyRef Name="PriorityId" />
+          </Key>
+          <Property Name="PriorityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PriorityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DisplayOrder" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK_Ticket_Priority" FromRole="Priority" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="ProductionLine">
+          <Key>
+            <PropertyRef Name="ProductionLineId" />
+          </Key>
+          <Property Name="ProductionLineId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductionLineName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PL_Desc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LocationId" Type="Int32" />
+          <NavigationProperty Name="ProductionUnits" Relationship="Self.FK_ProductionLineId" FromRole="ProductionLine" ToRole="ProductionUnit" />
+        </EntityType>
+        <EntityType Name="ProductionUnit">
+          <Key>
+            <PropertyRef Name="ProductionUnitId" />
+          </Key>
+          <Property Name="ProductionUnitId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductionUnitName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PU_Desc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductionLineId" Type="Int32" />
+          <NavigationProperty Name="ProductionLine" Relationship="Self.FK_ProductionLineId" FromRole="ProductionUnit" ToRole="ProductionLine" />
+          <NavigationProperty Name="UnitDowntimes" Relationship="Self.FK_ProductionUnit_Id" FromRole="ProductionUnit" ToRole="UnitDowntime" />
+          <NavigationProperty Name="UnitDowntimes1" Relationship="Self.FK_ProductionUnitId" FromRole="ProductionUnit" ToRole="UnitDowntime" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK_Ticket_ProductionUnit" FromRole="ProductionUnit" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="ReportedIssue_Tree_Data">
+          <Key>
+            <PropertyRef Name="ReportedIssue_Tree_DataId" />
+          </Key>
+          <Property Name="ReportedIssue_Tree_DataId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Level1_CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="Level2_CategoryId" Type="Int32" />
+          <Property Name="Level3_CategoryId" Type="Int32" />
+          <Property Name="Level4_CategoryId" Type="Int32" />
+          <Property Name="Parent_ReportedIssue_Tree_DataId" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_ReportedIssue_Tree_Data_Category1" FromRole="ReportedIssue_Tree_Data" ToRole="Category" />
+          <NavigationProperty Name="Category1" Relationship="Self.FK_ReportedIssue_Tree_Data_Category2" FromRole="ReportedIssue_Tree_Data" ToRole="Category" />
+          <NavigationProperty Name="Category2" Relationship="Self.FK_ReportedIssue_Tree_Data_Category3" FromRole="ReportedIssue_Tree_Data" ToRole="Category" />
+          <NavigationProperty Name="Category3" Relationship="Self.FK_ReportedIssue_Tree_Data_Category4" FromRole="ReportedIssue_Tree_Data" ToRole="Category" />
+          <NavigationProperty Name="ReportedIssue_Tree_Data1" Relationship="Self.FK_ReportedIssue_Tree_Data" FromRole="ReportedIssue_Tree_Data" ToRole="ReportedIssue_Tree_Data1" />
+          <NavigationProperty Name="ReportedIssue_Tree_Data2" Relationship="Self.FK_ReportedIssue_Tree_Data" FromRole="ReportedIssue_Tree_Data1" ToRole="ReportedIssue_Tree_Data" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK_Ticket_ReportedIssue_Tree_Data" FromRole="ReportedIssue_Tree_Data" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="RootCause_Tree_Data">
+          <Key>
+            <PropertyRef Name="RootCause_Tree_DataId" />
+          </Key>
+          <Property Name="RootCause_Tree_DataId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Level1_CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="Level2_CategoryId" Type="Int32" />
+          <Property Name="Level3_CategoryId" Type="Int32" />
+          <Property Name="Level4_CategoryId" Type="Int32" />
+          <Property Name="Parent_RootCause_Tree_DataId" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_RootCause_Tree_Data_Category1" FromRole="RootCause_Tree_Data" ToRole="Category" />
+          <NavigationProperty Name="Category1" Relationship="Self.FK_RootCause_Tree_Data_Category2" FromRole="RootCause_Tree_Data" ToRole="Category" />
+          <NavigationProperty Name="Category2" Relationship="Self.FK_RootCause_Tree_Data_Category3" FromRole="RootCause_Tree_Data" ToRole="Category" />
+          <NavigationProperty Name="Category3" Relationship="Self.FK_RootCause_Tree_Data_Category4" FromRole="RootCause_Tree_Data" ToRole="Category" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK_Ticket_RootCause_Tree_Data" FromRole="RootCause_Tree_Data" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="Source">
+          <Key>
+            <PropertyRef Name="SourceId" />
+          </Key>
+          <Property Name="SourceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SourceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK_Ticket_Source" FromRole="Source" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <Property Name="DisplayOrder" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_Status_Company" FromRole="Status" ToRole="Company" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK_Ticket_Status" FromRole="Status" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="TeamID" />
+          </Key>
+          <Property Name="TeamID" Type="Int32" Nullable="false" />
+          <Property Name="TeamName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyID" Type="Int32" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_CompanyID" FromRole="Team" ToRole="Company" />
+          <NavigationProperty Name="Events" Relationship="Self.FK_Event_Team" FromRole="Team" ToRole="Event" />
+        </EntityType>
+        <EntityType Name="test">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="Height" Type="Int32" />
+          <Property Name="weigh" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Ticket">
+          <Key>
+            <PropertyRef Name="TicketId" />
+          </Key>
+          <Property Name="TicketId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExternalReferenceNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <Property Name="ContactId" Type="Int32" Nullable="false" />
+          <Property Name="LocationId" Type="Int32" Nullable="false" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <Property Name="PriorityId" Type="Int32" Nullable="false" />
+          <Property Name="AssigneeId" Type="Int32" Nullable="false" />
+          <Property Name="ApplicationId" Type="Int32" Nullable="false" />
+          <Property Name="IsMajorIncident" Type="Boolean" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RootCause" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Resolution" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EscalationGroupId" Type="Int32" />
+          <Property Name="SourceId" Type="Int32" Nullable="false" />
+          <Property Name="ReportedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ResolvedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModificationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RootCause_Tree_DataId" Type="Int32" />
+          <Property Name="ReportedIssue_Tree_DataId" Type="Int32" />
+          <Property Name="Action1_Tree_DataId" Type="Int32" />
+          <Property Name="Action2_Tree_DataId" Type="Int32" />
+          <Property Name="Action3_Tree_DataId" Type="Int32" />
+          <Property Name="ProductionUnitId" Type="Int32" />
+          <NavigationProperty Name="Action_Tree_Data" Relationship="Self.FK_Ticket_Action1_Tree_Data" FromRole="Ticket" ToRole="Action_Tree_Data" />
+          <NavigationProperty Name="Action_Tree_Data1" Relationship="Self.FK_Ticket_Action2_Tree_Data" FromRole="Ticket" ToRole="Action_Tree_Data" />
+          <NavigationProperty Name="Action_Tree_Data2" Relationship="Self.FK_Ticket_Action3_Tree_Data" FromRole="Ticket" ToRole="Action_Tree_Data" />
+          <NavigationProperty Name="Application" Relationship="Self.FK_Ticket_Application" FromRole="Ticket" ToRole="Application" />
+          <NavigationProperty Name="Assignee" Relationship="Self.FK_Ticket_Assignee" FromRole="Ticket" ToRole="Assignee" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_Ticket_Company" FromRole="Ticket" ToRole="Company" />
+          <NavigationProperty Name="Contact" Relationship="Self.FK_Ticket_Contact" FromRole="Ticket" ToRole="Contact" />
+          <NavigationProperty Name="EscalationGroup" Relationship="Self.FK_Ticket_EscalationGroup" FromRole="Ticket" ToRole="EscalationGroup" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_Ticket_Location" FromRole="Ticket" ToRole="Location" />
+          <NavigationProperty Name="Priority" Relationship="Self.FK_Ticket_Priority" FromRole="Ticket" ToRole="Priority" />
+          <NavigationProperty Name="ProductionUnit" Relationship="Self.FK_Ticket_ProductionUnit" FromRole="Ticket" ToRole="ProductionUnit" />
+          <NavigationProperty Name="ReportedIssue_Tree_Data" Relationship="Self.FK_Ticket_ReportedIssue_Tree_Data" FromRole="Ticket" ToRole="ReportedIssue_Tree_Data" />
+          <NavigationProperty Name="RootCause_Tree_Data" Relationship="Self.FK_Ticket_RootCause_Tree_Data" FromRole="Ticket" ToRole="RootCause_Tree_Data" />
+          <NavigationProperty Name="Source" Relationship="Self.FK_Ticket_Source" FromRole="Ticket" ToRole="Source" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_Ticket_Status" FromRole="Ticket" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="UnitDowntime">
+          <Key>
+            <PropertyRef Name="UnitDowntimeID" />
+          </Key>
+          <Property Name="UnitDowntimeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductionUnitId" Type="Int32" Nullable="false" />
+          <Property Name="TEDed_Id" Type="Int32" Nullable="false" />
+          <Property Name="Start_Time" Type="DateTime" Precision="3" />
+          <Property Name="End_Time" Type="DateTime" Precision="3" />
+          <Property Name="FaultName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ProductionUnit" Relationship="Self.FK_ProductionUnit_Id" FromRole="UnitDowntime" ToRole="ProductionUnit" />
+          <NavigationProperty Name="ProductionUnit1" Relationship="Self.FK_ProductionUnitId" FromRole="UnitDowntime" ToRole="ProductionUnit" />
+        </EntityType>
+        <EntityType Name="PCIResponseTicket">
+          <Key>
+            <PropertyRef Name="SourceName" />
+          </Key>
+          <Property Name="TicketId" Type="Int32" />
+          <Property Name="ExternalReferenceNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="101" FixedLength="false" Unicode="true" />
+          <Property Name="LocationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PriorityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AssigneeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsMajorIncident" Type="Boolean" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RootCause" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Resolution" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EscalationGroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SourceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReportedDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="ResolvedDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="CreationDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="LastModificationDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="RootCause_Lv1_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RootCause_Lv2_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RootCause_Lv3_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReportedIssue_Lv1_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReportedIssue_Lv2_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReportedIssue_Lv3_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Action1__Lv1_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Action1__Lv2_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Action1__Lv3_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Action2__Lv1_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Action2__Lv2_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Action2__Lv3_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Action3__Lv1_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Action3__Lv2_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Action3__Lv3_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Production_Unit_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PCIResponseTicketsReport">
+          <Key>
+            <PropertyRef Name="TicketId" />
+            <PropertyRef Name="CompanyName" />
+            <PropertyRef Name="CompanyId" />
+            <PropertyRef Name="IsMajorIncident" />
+            <PropertyRef Name="Description" />
+            <PropertyRef Name="ReportedDate" />
+            <PropertyRef Name="CreationDate" />
+            <PropertyRef Name="LastModificationDate" />
+          </Key>
+          <Property Name="TicketId" Type="Int32" Nullable="false" />
+          <Property Name="ExternalReferenceNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="101" FixedLength="false" Unicode="true" />
+          <Property Name="LocationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LocationId" Type="Int32" />
+          <Property Name="StatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StatusId" Type="Int32" />
+          <Property Name="PriorityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AssigneeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsMajorIncident" Type="Boolean" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RootCause" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Resolution" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EscalationGroupId" Type="Int32" />
+          <Property Name="EscalationGroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SourceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReportedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ResolvedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModificationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RootCause_Lv1_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RootCauseID_Lv1_Category" Type="Int32" />
+          <Property Name="RootCause_Lv2_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RootCauseID_Lv2_Category" Type="Int32" />
+          <Property Name="RootCause_Lv3_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RootCauseID_Lv3_Category" Type="Int32" />
+          <Property Name="ReportedIssue_Lv1_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReportedIssue_Lv2_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReportedIssue_Lv3_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Action1_Lv1_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Action1_Lv2_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Action1_Lv3_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Action2_Lv1_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Action2_Lv2_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Action2_Lv3_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Action3_Lv1_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Action3_Lv2_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Action3_Lv3_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductionUnitName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PU_Desc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductionUnitId" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_Action_Tree_Data_Category1">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Action_Tree_Data" Type="Self.Action_Tree_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Action_Tree_Data">
+              <PropertyRef Name="Level1_CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Action_Tree_Data_Category2">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Action_Tree_Data" Type="Self.Action_Tree_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Action_Tree_Data">
+              <PropertyRef Name="Level2_CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Action_Tree_Data_Category3">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Action_Tree_Data" Type="Self.Action_Tree_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Action_Tree_Data">
+              <PropertyRef Name="Level3_CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Action_Tree_Data_Category4">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Action_Tree_Data" Type="Self.Action_Tree_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Action_Tree_Data">
+              <PropertyRef Name="Level4_CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_Action1_Tree_Data">
+          <End Role="Action_Tree_Data" Type="Self.Action_Tree_Data" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Action_Tree_Data">
+              <PropertyRef Name="Action_Tree_DataId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="Action1_Tree_DataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_Action2_Tree_Data">
+          <End Role="Action_Tree_Data" Type="Self.Action_Tree_Data" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Action_Tree_Data">
+              <PropertyRef Name="Action_Tree_DataId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="Action2_Tree_DataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_Action3_Tree_Data">
+          <End Role="Action_Tree_Data" Type="Self.Action_Tree_Data" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Action_Tree_Data">
+              <PropertyRef Name="Action_Tree_DataId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="Action3_Tree_DataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="Application" Type="Self.Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="Application">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Category_Application">
+          <End Role="Application" Type="Self.Application" Multiplicity="1" />
+          <End Role="Category" Type="Self.Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="Category">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_Application">
+          <End Role="Application" Type="Self.Application" Multiplicity="1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_Assignee">
+          <End Role="Assignee" Type="Self.Assignee" Multiplicity="1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assignee">
+              <PropertyRef Name="AssigneeId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="AssigneeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Category_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Category1" Type="Self.Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Category1">
+              <PropertyRef Name="ParentCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportedIssue_Tree_Data_Category1">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="ReportedIssue_Tree_Data" Type="Self.ReportedIssue_Tree_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="ReportedIssue_Tree_Data">
+              <PropertyRef Name="Level1_CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportedIssue_Tree_Data_Category2">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="ReportedIssue_Tree_Data" Type="Self.ReportedIssue_Tree_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="ReportedIssue_Tree_Data">
+              <PropertyRef Name="Level2_CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportedIssue_Tree_Data_Category3">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="ReportedIssue_Tree_Data" Type="Self.ReportedIssue_Tree_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="ReportedIssue_Tree_Data">
+              <PropertyRef Name="Level3_CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportedIssue_Tree_Data_Category4">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="ReportedIssue_Tree_Data" Type="Self.ReportedIssue_Tree_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="ReportedIssue_Tree_Data">
+              <PropertyRef Name="Level4_CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RootCause_Tree_Data_Category1">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="RootCause_Tree_Data" Type="Self.RootCause_Tree_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="RootCause_Tree_Data">
+              <PropertyRef Name="Level1_CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RootCause_Tree_Data_Category2">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="RootCause_Tree_Data" Type="Self.RootCause_Tree_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="RootCause_Tree_Data">
+              <PropertyRef Name="Level2_CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RootCause_Tree_Data_Category3">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="RootCause_Tree_Data" Type="Self.RootCause_Tree_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="RootCause_Tree_Data">
+              <PropertyRef Name="Level3_CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RootCause_Tree_Data_Category4">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="RootCause_Tree_Data" Type="Self.RootCause_Tree_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="RootCause_Tree_Data">
+              <PropertyRef Name="Level4_CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyID">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="Team" Type="Self.Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="Team">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contact_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EscalationGroup_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="EscalationGroup" Type="Self.EscalationGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="EscalationGroup">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Location_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="Location" Type="Self.Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Status_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="Status" Type="Self.Status" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="Status">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_Contact">
+          <End Role="Contact" Type="Self.Contact" Multiplicity="1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contact">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_EscalationGroup">
+          <End Role="EscalationGroup" Type="Self.EscalationGroup" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EscalationGroup">
+              <PropertyRef Name="EscalationGroupId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="EscalationGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="LocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event_Team">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="TeamID" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="TeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event_Type">
+          <End Role="EventType" Type="Self.EventType" Multiplicity="1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventType">
+              <PropertyRef Name="EventTypeID" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="EventTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_Priority">
+          <End Role="Priority" Type="Self.Priority" Multiplicity="1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Priority">
+              <PropertyRef Name="PriorityId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="PriorityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductionLineId">
+          <End Role="ProductionLine" Type="Self.ProductionLine" Multiplicity="0..1" />
+          <End Role="ProductionUnit" Type="Self.ProductionUnit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductionLine">
+              <PropertyRef Name="ProductionLineId" />
+            </Principal>
+            <Dependent Role="ProductionUnit">
+              <PropertyRef Name="ProductionLineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductionUnit_Id">
+          <End Role="ProductionUnit" Type="Self.ProductionUnit" Multiplicity="1" />
+          <End Role="UnitDowntime" Type="Self.UnitDowntime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductionUnit">
+              <PropertyRef Name="ProductionUnitId" />
+            </Principal>
+            <Dependent Role="UnitDowntime">
+              <PropertyRef Name="ProductionUnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductionUnitId">
+          <End Role="ProductionUnit" Type="Self.ProductionUnit" Multiplicity="1" />
+          <End Role="UnitDowntime" Type="Self.UnitDowntime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductionUnit">
+              <PropertyRef Name="ProductionUnitId" />
+            </Principal>
+            <Dependent Role="UnitDowntime">
+              <PropertyRef Name="ProductionUnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_ProductionUnit">
+          <End Role="ProductionUnit" Type="Self.ProductionUnit" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductionUnit">
+              <PropertyRef Name="ProductionUnitId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="ProductionUnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportedIssue_Tree_Data">
+          <End Role="ReportedIssue_Tree_Data" Type="Self.ReportedIssue_Tree_Data" Multiplicity="0..1" />
+          <End Role="ReportedIssue_Tree_Data1" Type="Self.ReportedIssue_Tree_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReportedIssue_Tree_Data">
+              <PropertyRef Name="ReportedIssue_Tree_DataId" />
+            </Principal>
+            <Dependent Role="ReportedIssue_Tree_Data1">
+              <PropertyRef Name="Parent_ReportedIssue_Tree_DataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_ReportedIssue_Tree_Data">
+          <End Role="ReportedIssue_Tree_Data" Type="Self.ReportedIssue_Tree_Data" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReportedIssue_Tree_Data">
+              <PropertyRef Name="ReportedIssue_Tree_DataId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="ReportedIssue_Tree_DataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_RootCause_Tree_Data">
+          <End Role="RootCause_Tree_Data" Type="Self.RootCause_Tree_Data" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RootCause_Tree_Data">
+              <PropertyRef Name="RootCause_Tree_DataId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="RootCause_Tree_DataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_Source">
+          <End Role="Source" Type="Self.Source" Multiplicity="1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Source">
+              <PropertyRef Name="SourceId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="SourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PCIEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Action_Tree_Data" EntityType="Self.Action_Tree_Data" />
+          <EntitySet Name="Applications" EntityType="Self.Application" />
+          <EntitySet Name="Assignees" EntityType="Self.Assignee" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Companies" EntityType="Self.Company" />
+          <EntitySet Name="Contacts" EntityType="Self.Contact" />
+          <EntitySet Name="EscalationGroups" EntityType="Self.EscalationGroup" />
+          <EntitySet Name="Events" EntityType="Self.Event" />
+          <EntitySet Name="EventTypes" EntityType="Self.EventType" />
+          <EntitySet Name="Locations" EntityType="Self.Location" />
+          <EntitySet Name="Priorities" EntityType="Self.Priority" />
+          <EntitySet Name="ProductionLines" EntityType="Self.ProductionLine" />
+          <EntitySet Name="ProductionUnits" EntityType="Self.ProductionUnit" />
+          <EntitySet Name="ReportedIssue_Tree_Data" EntityType="Self.ReportedIssue_Tree_Data" />
+          <EntitySet Name="RootCause_Tree_Data" EntityType="Self.RootCause_Tree_Data" />
+          <EntitySet Name="Sources" EntityType="Self.Source" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
+          <EntitySet Name="Teams" EntityType="Self.Team" />
+          <EntitySet Name="tests" EntityType="Self.test" />
+          <EntitySet Name="Tickets" EntityType="Self.Ticket" />
+          <EntitySet Name="UnitDowntimes" EntityType="Self.UnitDowntime" />
+          <EntitySet Name="PCIResponseTickets" EntityType="Self.PCIResponseTicket" />
+          <EntitySet Name="PCIResponseTicketsReports" EntityType="Self.PCIResponseTicketsReport" />
+          <AssociationSet Name="FK_Action_Tree_Data_Category1" Association="Self.FK_Action_Tree_Data_Category1">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Action_Tree_Data" EntitySet="Action_Tree_Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Action_Tree_Data_Category2" Association="Self.FK_Action_Tree_Data_Category2">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Action_Tree_Data" EntitySet="Action_Tree_Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Action_Tree_Data_Category3" Association="Self.FK_Action_Tree_Data_Category3">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Action_Tree_Data" EntitySet="Action_Tree_Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Action_Tree_Data_Category4" Association="Self.FK_Action_Tree_Data_Category4">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Action_Tree_Data" EntitySet="Action_Tree_Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_Action1_Tree_Data" Association="Self.FK_Ticket_Action1_Tree_Data">
+            <End Role="Action_Tree_Data" EntitySet="Action_Tree_Data" />
+            <End Role="Ticket" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_Action2_Tree_Data" Association="Self.FK_Ticket_Action2_Tree_Data">
+            <End Role="Action_Tree_Data" EntitySet="Action_Tree_Data" />
+            <End Role="Ticket" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_Action3_Tree_Data" Association="Self.FK_Ticket_Action3_Tree_Data">
+            <End Role="Action_Tree_Data" EntitySet="Action_Tree_Data" />
+            <End Role="Ticket" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_Company" Association="Self.FK_Application_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Application" EntitySet="Applications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Category_Application" Association="Self.FK_Category_Application">
+            <End Role="Application" EntitySet="Applications" />
+            <End Role="Category" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_Application" Association="Self.FK_Ticket_Application">
+            <End Role="Application" EntitySet="Applications" />
+            <End Role="Ticket" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_Assignee" Association="Self.FK_Ticket_Assignee">
+            <End Role="Assignee" EntitySet="Assignees" />
+            <End Role="Ticket" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Category_Category" Association="Self.FK_Category_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Category1" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportedIssue_Tree_Data_Category1" Association="Self.FK_ReportedIssue_Tree_Data_Category1">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="ReportedIssue_Tree_Data" EntitySet="ReportedIssue_Tree_Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportedIssue_Tree_Data_Category2" Association="Self.FK_ReportedIssue_Tree_Data_Category2">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="ReportedIssue_Tree_Data" EntitySet="ReportedIssue_Tree_Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportedIssue_Tree_Data_Category3" Association="Self.FK_ReportedIssue_Tree_Data_Category3">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="ReportedIssue_Tree_Data" EntitySet="ReportedIssue_Tree_Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportedIssue_Tree_Data_Category4" Association="Self.FK_ReportedIssue_Tree_Data_Category4">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="ReportedIssue_Tree_Data" EntitySet="ReportedIssue_Tree_Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RootCause_Tree_Data_Category1" Association="Self.FK_RootCause_Tree_Data_Category1">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="RootCause_Tree_Data" EntitySet="RootCause_Tree_Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RootCause_Tree_Data_Category2" Association="Self.FK_RootCause_Tree_Data_Category2">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="RootCause_Tree_Data" EntitySet="RootCause_Tree_Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RootCause_Tree_Data_Category3" Association="Self.FK_RootCause_Tree_Data_Category3">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="RootCause_Tree_Data" EntitySet="RootCause_Tree_Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RootCause_Tree_Data_Category4" Association="Self.FK_RootCause_Tree_Data_Category4">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="RootCause_Tree_Data" EntitySet="RootCause_Tree_Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyID" Association="Self.FK_CompanyID">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Team" EntitySet="Teams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contact_Company" Association="Self.FK_Contact_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Contact" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EscalationGroup_Company" Association="Self.FK_EscalationGroup_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="EscalationGroup" EntitySet="EscalationGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Location_Company" Association="Self.FK_Location_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Location" EntitySet="Locations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Status_Company" Association="Self.FK_Status_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Status" EntitySet="Status" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_Company" Association="Self.FK_Ticket_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Ticket" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_Contact" Association="Self.FK_Ticket_Contact">
+            <End Role="Contact" EntitySet="Contacts" />
+            <End Role="Ticket" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_EscalationGroup" Association="Self.FK_Ticket_EscalationGroup">
+            <End Role="EscalationGroup" EntitySet="EscalationGroups" />
+            <End Role="Ticket" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event_Location" Association="Self.FK_Event_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Event" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event_Team" Association="Self.FK_Event_Team">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="Event" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event_Type" Association="Self.FK_Event_Type">
+            <End Role="EventType" EntitySet="EventTypes" />
+            <End Role="Event" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_Location" Association="Self.FK_Ticket_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Ticket" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_Priority" Association="Self.FK_Ticket_Priority">
+            <End Role="Priority" EntitySet="Priorities" />
+            <End Role="Ticket" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductionLineId" Association="Self.FK_ProductionLineId">
+            <End Role="ProductionLine" EntitySet="ProductionLines" />
+            <End Role="ProductionUnit" EntitySet="ProductionUnits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductionUnit_Id" Association="Self.FK_ProductionUnit_Id">
+            <End Role="ProductionUnit" EntitySet="ProductionUnits" />
+            <End Role="UnitDowntime" EntitySet="UnitDowntimes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductionUnitId" Association="Self.FK_ProductionUnitId">
+            <End Role="ProductionUnit" EntitySet="ProductionUnits" />
+            <End Role="UnitDowntime" EntitySet="UnitDowntimes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_ProductionUnit" Association="Self.FK_Ticket_ProductionUnit">
+            <End Role="ProductionUnit" EntitySet="ProductionUnits" />
+            <End Role="Ticket" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportedIssue_Tree_Data" Association="Self.FK_ReportedIssue_Tree_Data">
+            <End Role="ReportedIssue_Tree_Data" EntitySet="ReportedIssue_Tree_Data" />
+            <End Role="ReportedIssue_Tree_Data1" EntitySet="ReportedIssue_Tree_Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_ReportedIssue_Tree_Data" Association="Self.FK_Ticket_ReportedIssue_Tree_Data">
+            <End Role="ReportedIssue_Tree_Data" EntitySet="ReportedIssue_Tree_Data" />
+            <End Role="Ticket" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_RootCause_Tree_Data" Association="Self.FK_Ticket_RootCause_Tree_Data">
+            <End Role="RootCause_Tree_Data" EntitySet="RootCause_Tree_Data" />
+            <End Role="Ticket" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_Source" Association="Self.FK_Ticket_Source">
+            <End Role="Source" EntitySet="Sources" />
+            <End Role="Ticket" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_Status" Association="Self.FK_Ticket_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Ticket" EntitySet="Tickets" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PCIModelStoreContainer" CdmEntityContainer="PCIEntities">
+          <EntitySetMapping Name="Action_Tree_Data">
+            <EntityTypeMapping TypeName="PCIModel.Action_Tree_Data">
+              <MappingFragment StoreEntitySet="Action_Tree_Data">
+                <ScalarProperty Name="Action_Tree_DataId" ColumnName="Action_Tree_DataId" />
+                <ScalarProperty Name="Level1_CategoryId" ColumnName="Level1_CategoryId" />
+                <ScalarProperty Name="Level2_CategoryId" ColumnName="Level2_CategoryId" />
+                <ScalarProperty Name="Level3_CategoryId" ColumnName="Level3_CategoryId" />
+                <ScalarProperty Name="Level4_CategoryId" ColumnName="Level4_CategoryId" />
+                <ScalarProperty Name="Parent_Action_Tree_DataId" ColumnName="Parent_Action_Tree_DataId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Applications">
+            <EntityTypeMapping TypeName="PCIModel.Application">
+              <MappingFragment StoreEntitySet="Application">
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Assignees">
+            <EntityTypeMapping TypeName="PCIModel.Assignee">
+              <MappingFragment StoreEntitySet="Assignee">
+                <ScalarProperty Name="AssigneeId" ColumnName="AssigneeId" />
+                <ScalarProperty Name="AssigneeName" ColumnName="AssigneeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="PCIModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="ParentCategoryId" ColumnName="ParentCategoryId" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="PCIModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CompanyAbv" ColumnName="CompanyAbv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="PCIModel.Contact">
+              <MappingFragment StoreEntitySet="Contact">
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EscalationGroups">
+            <EntityTypeMapping TypeName="PCIModel.EscalationGroup">
+              <MappingFragment StoreEntitySet="EscalationGroup">
+                <ScalarProperty Name="EscalationGroupId" ColumnName="EscalationGroupId" />
+                <ScalarProperty Name="EscalationGroupName" ColumnName="EscalationGroupName" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="PCIModel.Event">
+              <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="EventTypeID" ColumnName="EventTypeID" />
+                <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="LastModificationDate" ColumnName="LastModificationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventTypes">
+            <EntityTypeMapping TypeName="PCIModel.EventType">
+              <MappingFragment StoreEntitySet="EventType">
+                <ScalarProperty Name="EventTypeID" ColumnName="EventTypeID" />
+                <ScalarProperty Name="EventType1" ColumnName="EventType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="PCIModel.Location">
+              <MappingFragment StoreEntitySet="Location">
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+                <ScalarProperty Name="LocationAbv" ColumnName="LocationAbv" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Priorities">
+            <EntityTypeMapping TypeName="PCIModel.Priority">
+              <MappingFragment StoreEntitySet="Priority">
+                <ScalarProperty Name="PriorityId" ColumnName="PriorityId" />
+                <ScalarProperty Name="PriorityName" ColumnName="PriorityName" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductionLines">
+            <EntityTypeMapping TypeName="PCIModel.ProductionLine">
+              <MappingFragment StoreEntitySet="ProductionLine">
+                <ScalarProperty Name="ProductionLineId" ColumnName="ProductionLineId" />
+                <ScalarProperty Name="ProductionLineName" ColumnName="ProductionLineName" />
+                <ScalarProperty Name="PL_Desc" ColumnName="PL_Desc" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductionUnits">
+            <EntityTypeMapping TypeName="PCIModel.ProductionUnit">
+              <MappingFragment StoreEntitySet="ProductionUnit">
+                <ScalarProperty Name="ProductionUnitId" ColumnName="ProductionUnitId" />
+                <ScalarProperty Name="ProductionUnitName" ColumnName="ProductionUnitName" />
+                <ScalarProperty Name="PU_Desc" ColumnName="PU_Desc" />
+                <ScalarProperty Name="ProductionLineId" ColumnName="ProductionLineId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReportedIssue_Tree_Data">
+            <EntityTypeMapping TypeName="PCIModel.ReportedIssue_Tree_Data">
+              <MappingFragment StoreEntitySet="ReportedIssue_Tree_Data">
+                <ScalarProperty Name="ReportedIssue_Tree_DataId" ColumnName="ReportedIssue_Tree_DataId" />
+                <ScalarProperty Name="Level1_CategoryId" ColumnName="Level1_CategoryId" />
+                <ScalarProperty Name="Level2_CategoryId" ColumnName="Level2_CategoryId" />
+                <ScalarProperty Name="Level3_CategoryId" ColumnName="Level3_CategoryId" />
+                <ScalarProperty Name="Level4_CategoryId" ColumnName="Level4_CategoryId" />
+                <ScalarProperty Name="Parent_ReportedIssue_Tree_DataId" ColumnName="Parent_ReportedIssue_Tree_DataId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RootCause_Tree_Data">
+            <EntityTypeMapping TypeName="PCIModel.RootCause_Tree_Data">
+              <MappingFragment StoreEntitySet="RootCause_Tree_Data">
+                <ScalarProperty Name="RootCause_Tree_DataId" ColumnName="RootCause_Tree_DataId" />
+                <ScalarProperty Name="Level1_CategoryId" ColumnName="Level1_CategoryId" />
+                <ScalarProperty Name="Level2_CategoryId" ColumnName="Level2_CategoryId" />
+                <ScalarProperty Name="Level3_CategoryId" ColumnName="Level3_CategoryId" />
+                <ScalarProperty Name="Level4_CategoryId" ColumnName="Level4_CategoryId" />
+                <ScalarProperty Name="Parent_RootCause_Tree_DataId" ColumnName="Parent_RootCause_Tree_DataId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sources">
+            <EntityTypeMapping TypeName="PCIModel.Source">
+              <MappingFragment StoreEntitySet="Source">
+                <ScalarProperty Name="SourceId" ColumnName="SourceId" />
+                <ScalarProperty Name="SourceName" ColumnName="SourceName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="PCIModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teams">
+            <EntityTypeMapping TypeName="PCIModel.Team">
+              <MappingFragment StoreEntitySet="Team">
+                <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+                <ScalarProperty Name="TeamName" ColumnName="TeamName" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tests">
+            <EntityTypeMapping TypeName="PCIModel.test">
+              <MappingFragment StoreEntitySet="test">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="weigh" ColumnName="weigh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tickets">
+            <EntityTypeMapping TypeName="PCIModel.Ticket">
+              <MappingFragment StoreEntitySet="Ticket">
+                <ScalarProperty Name="TicketId" ColumnName="TicketId" />
+                <ScalarProperty Name="ExternalReferenceNo" ColumnName="ExternalReferenceNo" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="PriorityId" ColumnName="PriorityId" />
+                <ScalarProperty Name="AssigneeId" ColumnName="AssigneeId" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="IsMajorIncident" ColumnName="IsMajorIncident" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RootCause" ColumnName="RootCause" />
+                <ScalarProperty Name="Resolution" ColumnName="Resolution" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="EscalationGroupId" ColumnName="EscalationGroupId" />
+                <ScalarProperty Name="SourceId" ColumnName="SourceId" />
+                <ScalarProperty Name="ReportedDate" ColumnName="ReportedDate" />
+                <ScalarProperty Name="ResolvedDate" ColumnName="ResolvedDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="LastModificationDate" ColumnName="LastModificationDate" />
+                <ScalarProperty Name="RootCause_Tree_DataId" ColumnName="RootCause_Tree_DataId" />
+                <ScalarProperty Name="ReportedIssue_Tree_DataId" ColumnName="ReportedIssue_Tree_DataId" />
+                <ScalarProperty Name="Action1_Tree_DataId" ColumnName="Action1_Tree_DataId" />
+                <ScalarProperty Name="Action2_Tree_DataId" ColumnName="Action2_Tree_DataId" />
+                <ScalarProperty Name="Action3_Tree_DataId" ColumnName="Action3_Tree_DataId" />
+                <ScalarProperty Name="ProductionUnitId" ColumnName="ProductionUnitId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnitDowntimes">
+            <EntityTypeMapping TypeName="PCIModel.UnitDowntime">
+              <MappingFragment StoreEntitySet="UnitDowntime">
+                <ScalarProperty Name="UnitDowntimeID" ColumnName="UnitDowntimeID" />
+                <ScalarProperty Name="ProductionUnitId" ColumnName="ProductionUnitId" />
+                <ScalarProperty Name="TEDed_Id" ColumnName="TEDed_Id" />
+                <ScalarProperty Name="Start_Time" ColumnName="Start_Time" />
+                <ScalarProperty Name="End_Time" ColumnName="End_Time" />
+                <ScalarProperty Name="FaultName" ColumnName="FaultName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PCIResponseTickets">
+            <EntityTypeMapping TypeName="PCIModel.PCIResponseTicket">
+              <MappingFragment StoreEntitySet="PCIResponseTickets">
+                <ScalarProperty Name="TicketId" ColumnName="TicketId" />
+                <ScalarProperty Name="ExternalReferenceNo" ColumnName="ExternalReferenceNo" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+                <ScalarProperty Name="PriorityName" ColumnName="PriorityName" />
+                <ScalarProperty Name="AssigneeName" ColumnName="AssigneeName" />
+                <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+                <ScalarProperty Name="IsMajorIncident" ColumnName="IsMajorIncident" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RootCause" ColumnName="RootCause" />
+                <ScalarProperty Name="Resolution" ColumnName="Resolution" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="EscalationGroupName" ColumnName="EscalationGroupName" />
+                <ScalarProperty Name="SourceName" ColumnName="SourceName" />
+                <ScalarProperty Name="ReportedDate" ColumnName="ReportedDate" />
+                <ScalarProperty Name="ResolvedDate" ColumnName="ResolvedDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="LastModificationDate" ColumnName="LastModificationDate" />
+                <ScalarProperty Name="RootCause_Lv1_Category" ColumnName="RootCause Lv1 Category" />
+                <ScalarProperty Name="RootCause_Lv2_Category" ColumnName="RootCause Lv2 Category" />
+                <ScalarProperty Name="RootCause_Lv3_Category" ColumnName="RootCause Lv3 Category" />
+                <ScalarProperty Name="ReportedIssue_Lv1_Category" ColumnName="ReportedIssue Lv1 Category" />
+                <ScalarProperty Name="ReportedIssue_Lv2_Category" ColumnName="ReportedIssue Lv2 Category" />
+                <ScalarProperty Name="ReportedIssue_Lv3_Category" ColumnName="ReportedIssue Lv3 Category" />
+                <ScalarProperty Name="Action1__Lv1_Category" ColumnName="Action1  Lv1 Category" />
+                <ScalarProperty Name="Action1__Lv2_Category" ColumnName="Action1  Lv2 Category" />
+                <ScalarProperty Name="Action1__Lv3_Category" ColumnName="Action1  Lv3 Category" />
+                <ScalarProperty Name="Action2__Lv1_Category" ColumnName="Action2  Lv1 Category" />
+                <ScalarProperty Name="Action2__Lv2_Category" ColumnName="Action2  Lv2 Category" />
+                <ScalarProperty Name="Action2__Lv3_Category" ColumnName="Action2  Lv3 Category" />
+                <ScalarProperty Name="Action3__Lv1_Category" ColumnName="Action3  Lv1 Category" />
+                <ScalarProperty Name="Action3__Lv2_Category" ColumnName="Action3  Lv2 Category" />
+                <ScalarProperty Name="Action3__Lv3_Category" ColumnName="Action3  Lv3 Category" />
+                <ScalarProperty Name="Production_Unit_Name" ColumnName="Production Unit Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PCIResponseTicketsReports">
+            <EntityTypeMapping TypeName="PCIModel.PCIResponseTicketsReport">
+              <MappingFragment StoreEntitySet="PCIResponseTicketsReport">
+                <ScalarProperty Name="TicketId" ColumnName="TicketId" />
+                <ScalarProperty Name="ExternalReferenceNo" ColumnName="ExternalReferenceNo" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="PriorityName" ColumnName="PriorityName" />
+                <ScalarProperty Name="AssigneeName" ColumnName="AssigneeName" />
+                <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+                <ScalarProperty Name="IsMajorIncident" ColumnName="IsMajorIncident" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RootCause" ColumnName="RootCause" />
+                <ScalarProperty Name="Resolution" ColumnName="Resolution" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="EscalationGroupId" ColumnName="EscalationGroupId" />
+                <ScalarProperty Name="EscalationGroupName" ColumnName="EscalationGroupName" />
+                <ScalarProperty Name="SourceName" ColumnName="SourceName" />
+                <ScalarProperty Name="ReportedDate" ColumnName="ReportedDate" />
+                <ScalarProperty Name="ResolvedDate" ColumnName="ResolvedDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="LastModificationDate" ColumnName="LastModificationDate" />
+                <ScalarProperty Name="RootCause_Lv1_Category" ColumnName="RootCause_Lv1_Category" />
+                <ScalarProperty Name="RootCauseID_Lv1_Category" ColumnName="RootCauseID_Lv1_Category" />
+                <ScalarProperty Name="RootCause_Lv2_Category" ColumnName="RootCause_Lv2_Category" />
+                <ScalarProperty Name="RootCauseID_Lv2_Category" ColumnName="RootCauseID_Lv2_Category" />
+                <ScalarProperty Name="RootCause_Lv3_Category" ColumnName="RootCause_Lv3_Category" />
+                <ScalarProperty Name="RootCauseID_Lv3_Category" ColumnName="RootCauseID_Lv3_Category" />
+                <ScalarProperty Name="ReportedIssue_Lv1_Category" ColumnName="ReportedIssue_Lv1_Category" />
+                <ScalarProperty Name="ReportedIssue_Lv2_Category" ColumnName="ReportedIssue_Lv2_Category" />
+                <ScalarProperty Name="ReportedIssue_Lv3_Category" ColumnName="ReportedIssue_Lv3_Category" />
+                <ScalarProperty Name="Action1_Lv1_Category" ColumnName="Action1_Lv1_Category" />
+                <ScalarProperty Name="Action1_Lv2_Category" ColumnName="Action1_Lv2_Category" />
+                <ScalarProperty Name="Action1_Lv3_Category" ColumnName="Action1_Lv3_Category" />
+                <ScalarProperty Name="Action2_Lv1_Category" ColumnName="Action2_Lv1_Category" />
+                <ScalarProperty Name="Action2_Lv2_Category" ColumnName="Action2_Lv2_Category" />
+                <ScalarProperty Name="Action2_Lv3_Category" ColumnName="Action2_Lv3_Category" />
+                <ScalarProperty Name="Action3_Lv1_Category" ColumnName="Action3_Lv1_Category" />
+                <ScalarProperty Name="Action3_Lv2_Category" ColumnName="Action3_Lv2_Category" />
+                <ScalarProperty Name="Action3_Lv3_Category" ColumnName="Action3_Lv3_Category" />
+                <ScalarProperty Name="ProductionUnitName" ColumnName="ProductionUnitName" />
+                <ScalarProperty Name="PU_Desc" ColumnName="PU_Desc" />
+                <ScalarProperty Name="ProductionUnitId" ColumnName="ProductionUnitId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

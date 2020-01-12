@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4c5010c69b95461da80ca61cfcf48cff" Name="Diagram1" ZoomLevel="68">
+        <EntityTypeShape EntityType="PCIModel.Action_Tree_Data" Width="1.5" PointX="7.5" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCIModel.Application" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCIModel.Assignee" Width="1.5" PointX="7.5" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCIModel.Category" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCIModel.Company" Width="1.5" PointX="0.75" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCIModel.Contact" Width="1.5" PointX="3" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCIModel.EscalationGroup" Width="1.5" PointX="3" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCIModel.Event" Width="1.5" PointX="5.25" PointY="26.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCIModel.EventType" Width="1.5" PointX="3" PointY="33.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCIModel.Location" Width="1.5" PointX="3" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCIModel.Priority" Width="1.5" PointX="7.5" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCIModel.ProductionLine" Width="1.5" PointX="5.25" PointY="30.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCIModel.ProductionUnit" Width="1.5" PointX="7.5" PointY="30.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCIModel.ReportedIssue_Tree_Data" Width="1.5" PointX="7.5" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCIModel.RootCause_Tree_Data" Width="1.5" PointX="7.5" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCIModel.Source" Width="1.5" PointX="7.5" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCIModel.Status" Width="1.5" PointX="3" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCIModel.Team" Width="1.5" PointX="3" PointY="30.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCIModel.test" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCIModel.Ticket" Width="1.5" PointX="9.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCIModel.UnitDowntime" Width="1.5" PointX="9.75" PointY="30.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCIModel.PCIResponseTicket" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCIModel.PCIResponseTicketsReport" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="PCIModel.FK_Action_Tree_Data_Category1" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_Action_Tree_Data_Category2" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_Action_Tree_Data_Category3" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_Action_Tree_Data_Category4" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_Ticket_Action1_Tree_Data" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_Ticket_Action2_Tree_Data" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_Ticket_Action3_Tree_Data" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_Application_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_Category_Application" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_Ticket_Application" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_Ticket_Assignee" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_Category_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_ReportedIssue_Tree_Data_Category1" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_ReportedIssue_Tree_Data_Category2" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_ReportedIssue_Tree_Data_Category3" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_ReportedIssue_Tree_Data_Category4" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_RootCause_Tree_Data_Category1" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_RootCause_Tree_Data_Category2" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_RootCause_Tree_Data_Category3" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_RootCause_Tree_Data_Category4" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_CompanyID" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_Contact_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_EscalationGroup_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_Location_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_Status_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_Ticket_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_Ticket_Contact" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_Ticket_EscalationGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_Event_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_Event_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_Event_Type" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_Ticket_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_Ticket_Priority" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_ProductionLineId" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_ProductionUnit_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_ProductionUnitId" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_Ticket_ProductionUnit" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_ReportedIssue_Tree_Data" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_Ticket_ReportedIssue_Tree_Data" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_Ticket_RootCause_Tree_Data" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_Ticket_Source" ManuallyRouted="false" />
+        <AssociationConnector Association="PCIModel.FK_Ticket_Status" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
