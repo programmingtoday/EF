@@ -26,7 +26,7 @@ namespace EntityFrameWork_1
 
         private void NewTicket_Click(object sender, System.EventArgs e)
         {
-
+            MessageBox.Show("hi");
         }
     }
 }
